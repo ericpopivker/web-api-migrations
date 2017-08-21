@@ -38,6 +38,8 @@ Stripe keeps Weebhooks and API documented in one place. Probably makes sense to 
 ## Names for this product
 
 CleanBreak
+
 BulletproofApi
+
 UnofficialStripeVersioning
 
