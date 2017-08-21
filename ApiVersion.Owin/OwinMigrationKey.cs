@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApiVersion.Sample.OwinMigrations
 {
-    public class OwinMigrationKey
+    public class OwinMigrationKey : IEquatable<OwinMigrationKey>
     {
         public Uri Uri { get; set; }
         public DataDirection Direction { get; set; }
@@ -16,11 +16,6 @@ namespace ApiVersion.Sample.OwinMigrations
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
-        }
-
-        protected bool Equals(OwinMigrationKey other)
-        {
-            return Equals(Uri, other.Uri) && Direction == other.Direction && string.Equals(Method, other.Method);
         }
 
         public override int GetHashCode()
@@ -32,6 +27,11 @@ namespace ApiVersion.Sample.OwinMigrations
                 hashCode = (hashCode*397) ^ (Method != null ? Method.GetHashCode() : 0);
                 return hashCode;
             }
+        }
+
+        bool IEquatable<OwinMigrationKey>.Equals(OwinMigrationKey other)
+        {
+            return Equals(Uri, other.Uri) && Direction == other.Direction && string.Equals(Method, other.Method);
         }
     }
 }

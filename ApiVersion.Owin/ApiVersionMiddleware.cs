@@ -43,47 +43,36 @@ namespace ApiVersion.Owin
                 Uri = context.Request.Uri
             };
 
-            TestMigration testMigration = new TestMigration();
             bool applied;
-            if (!_cache.TryGetValue(migrationKey, out applied))
+            if (_cache.TryGetValue(migrationKey, out applied))
             {
-                object result = _migrationManager.Migrate(migrationKey, testMigration, version,
-                    MigrationDirection.Backward);
-                if (result != null)
+                if (applied)
                 {
-                    // TODO: Log warning with performance
-                    //throw new Exception("Test migration should not return value");
+                    return;
                 }
-                applied = testMigration.Useful;
-                _cache[migrationKey] = testMigration.Useful;
             }
-            if (applied)
+
+            var owinResponse = context.Response;
+            var owinResponseStream = owinResponse.Body;
+            var responseBuffer = new MemoryStream();
+            context.Response.Body = responseBuffer;
+            await Next.Invoke(context);
+
+            string responseJsonBody = "";
+            responseBuffer.Seek(0, SeekOrigin.Begin);
+            using (StreamReader reader = new StreamReader(responseBuffer))
             {
-                var owinResponse = context.Response;
-                var owinResponseStream = owinResponse.Body;
-                var responseBuffer = new MemoryStream();
-                context.Response.Body = responseBuffer;
-                await Next.Invoke(context);
-
-                string responseJsonBody = "";
-                responseBuffer.Seek(0, SeekOrigin.Begin);
-                using (StreamReader reader = new StreamReader(responseBuffer))
-                {
-                    responseJsonBody = await reader.ReadToEndAsync();
-                }
-
-
-                var newResultBody =
-                    (OwinMigrationData)
-                        _migrationManager.Migrate(migrationKey, new OwinMigrationData() { Body = responseJsonBody }, version,
-                            MigrationDirection.Backward);
-                var newResultContent = new StringContent(newResultBody.Body, Encoding.UTF8, "application/json");
-                var customResponseStream = await newResultContent.ReadAsStreamAsync();
-                await customResponseStream.CopyToAsync(owinResponseStream);
-
-                owinResponse.ContentLength = customResponseStream.Length;
-                owinResponse.Body = owinResponseStream;
+                responseJsonBody = await reader.ReadToEndAsync();
             }
+
+            var migrationData = new OwinMigrationData() {Body = responseJsonBody};
+            _cache[migrationKey] = _migrationManager.Migrate(migrationKey, migrationData, version, MigrationDirection.Backward);
+            var newResultContent = new StringContent(migrationData.Body, Encoding.UTF8, "application/json");
+            var customResponseStream = await newResultContent.ReadAsStreamAsync();
+            await customResponseStream.CopyToAsync(owinResponseStream);
+
+            owinResponse.ContentLength = customResponseStream.Length;
+            owinResponse.Body = owinResponseStream;
         }
 
         private async Task migrateRequest(IOwinContext context, IComparable version)
@@ -96,37 +85,26 @@ namespace ApiVersion.Owin
             };
 
 
-            TestMigration testMigration = new TestMigration();
             bool applied;
-            if (!_cache.TryGetValue(migrationKey, out applied))
+            if (_cache.TryGetValue(migrationKey, out applied))
             {
-                object result = _migrationManager.Migrate(migrationKey, testMigration, version,
-                    MigrationDirection.Forward);
-                if (result != null)
+                if (applied)
                 {
-                    // TODO: Log warning with performance
-                    //throw new Exception("Test migration should not return value");
+                    return;
                 }
-                applied = testMigration.Useful;
-                _cache[migrationKey] = testMigration.Useful;
             }
 
-            if (applied)
+            var request = context.Request;
+            string jsonBody = "";
+            using (StreamReader reader = new StreamReader(context.Request.Body))
             {
-                var request = context.Request;
-                string jsonBody = "";
-                using (StreamReader reader = new StreamReader(context.Request.Body))
-                {
-                    jsonBody = await reader.ReadToEndAsync();
-                }
-
-                var newRequestBody =
-                    (OwinMigrationData)
-                        _migrationManager.Migrate(migrationKey, new OwinMigrationData() { Body = jsonBody }, version,
-                            MigrationDirection.Forward);
-                var content = new StringContent(newRequestBody.Body, Encoding.UTF8, "application/json");
-                request.Body = await content.ReadAsStreamAsync();
+                jsonBody = await reader.ReadToEndAsync();
             }
+
+            var migrationData = new OwinMigrationData() {Body = jsonBody};
+            _cache[migrationKey] = _migrationManager.Migrate(migrationKey, migrationData, version, MigrationDirection.Forward);
+            var content = new StringContent(migrationData.Body, Encoding.UTF8, "application/json");
+            request.Body = await content.ReadAsStreamAsync();
         }
     }
 }

@@ -10,22 +10,20 @@ namespace ApiVersion.Web.Sample.ApiMigrations
 {
     public class v20170817_Migration : OwinMigration
     {
-        public override OwinMigrationData Migrate(OwinMigrationKey key, OwinMigrationData body)
+        public override bool Migrate(OwinMigrationKey key, OwinMigrationData body)
         {
             if (key.Method != "POST" || key.Uri.LocalPath.StartsWith("api/values", StringComparison.OrdinalIgnoreCase))
             {
-                return body;
+                return false;
             }
 
             if (key.Direction == DataDirection.Incoming)
             {
-                if (SetUpAsUseful(body)) return null;
                 body.Body = $"\"{JObject.Parse(body.Body)["value"]}\"";
-                return body;
+                return true;
             }
-            if (SetUpAsUseful(body)) return null;
             body.Body = $"{{ \"result\": {body.Body}}}";
-            return body;
+            return true;
         }
     }
 }

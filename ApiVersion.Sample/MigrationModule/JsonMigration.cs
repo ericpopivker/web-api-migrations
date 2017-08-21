@@ -5,11 +5,11 @@ namespace ApiVersion.Sample.Migrations
 {
     public abstract class JsonMigration : Migration
     {
-        public override object Migrate(object key, object data)
+        public override bool Migrate(object key, object data)
         {
             return Migrate(key, (JObject)data);
         }
 
-        public abstract JObject Migrate(object key, JObject data);
+        public abstract bool Migrate(object key, JObject data);
     }
 }

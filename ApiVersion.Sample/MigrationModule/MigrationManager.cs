@@ -18,7 +18,7 @@ namespace ApiVersion.Sample.MigrationModule
             _migrations = _migrationLoader.Load().OrderBy(s => s.Version).ToArray();
         }
 
-        public object Migrate(object key, object data, IComparable currentVersion, MigrationDirection direction)
+        public bool Migrate(object key, object data, IComparable currentVersion, MigrationDirection direction)
         {
             IEnumerable<MigrationWrapper> migrationPipeline = _migrations;
             if (direction == MigrationDirection.Forward)
@@ -29,12 +29,12 @@ namespace ApiVersion.Sample.MigrationModule
             {
                 migrationPipeline = migrationPipeline.SkipWhile(s => s.Version.CompareTo(currentVersion) <= 0).Reverse();
             }
-            object modifiedData = data;
+            bool migrated = false;
             foreach (var migration in migrationPipeline)
             {
-                modifiedData = migration.Migration.Migrate(key, modifiedData);
+                migrated |= migration.Migration.Migrate(key, data);
             }
-            return modifiedData;
+            return migrated;
         }
 
         

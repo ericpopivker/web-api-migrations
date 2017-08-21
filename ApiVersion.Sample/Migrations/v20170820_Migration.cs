@@ -9,10 +9,10 @@ namespace ApiVersion.Sample.Migrations
 {
     public class v20170820_Migration : JsonMigration
     {
-        public override JObject Migrate(object key, JObject data)
+        public override bool Migrate(object key, JObject data)
         {
             data["v20170820_Migration"] = 1;
-            return data;
+            return true;
         }
     }
 }

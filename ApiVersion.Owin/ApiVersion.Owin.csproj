@@ -60,7 +60,6 @@
     <Compile Include="OwinMigrationData.cs" />
     <Compile Include="OwinMigrationKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestMigration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApiVersion.Sample\ApiVersion.Sample.csproj">
