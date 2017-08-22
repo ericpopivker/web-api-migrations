@@ -28,7 +28,10 @@ There are 3 types of changes that may break the RESP Api contract:
 
 * a change in a request/response property type (string to int)
 * a change in a request/response property size (string(500) to string(100))
-* removing any part of the API (resource, request property, response property, webhook events)
+* rename request/property name
+* remove reouse
+* remove request/response property
+* add/remove/rename enums
 
 
 ## Implementation Notes
@@ -52,3 +55,4 @@ UnofficialStripeVersioning
 
 https://byrondover.github.io/post/restful-api-guidelines/#breaking-change
 - Versioning, Breaking Changes, Depreciation
+- Very good article in general
