@@ -29,7 +29,7 @@ There are 3 types of changes that may break the RESP Api contract:
 * a change in a request/response property type (string to int)
 * a change in a request/response property size (string(500) to string(100))
 * rename request/property name
-* remove reouse
+* remove resource
 * remove request/response property
 * add/remove/rename enums
 
