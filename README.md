@@ -14,7 +14,7 @@ https://stripe.com/blog/api-versioning
 * Versioning is standardized using date labels like Stripe API: https://stripe.com/docs/upgrades#api-changelog
 * Supports webhook changes
 
-### P2
+### V2
 * Swagger documentation auto generated for each version
 
 
