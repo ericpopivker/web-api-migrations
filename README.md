@@ -46,3 +46,9 @@ BulletproofApi
 
 UnofficialStripeVersioning
 
+
+## Interesting links
+
+
+https://byrondover.github.io/post/restful-api-guidelines/#breaking-change
+- Versioning, Breaking Changes, Depreciation
