@@ -46,13 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MigrationModule\MigrationDirection.cs" />
-    <Compile Include="MigrationModule\MigrationLoader.cs" />
-    <Compile Include="MigrationModule\MigrationWrapper.cs" />
-    <Compile Include="MigrationModule\IMigrationLoader.cs" />
-    <Compile Include="MigrationModule\JsonMigration.cs" />
-    <Compile Include="MigrationModule\Migration.cs" />
-    <Compile Include="MigrationModule\MigrationManager.cs" />
     <Compile Include="Migrations\v20170815_Migration.cs" />
     <Compile Include="Migrations\v20170820_Migration.cs" />
     <Compile Include="Program.cs" />

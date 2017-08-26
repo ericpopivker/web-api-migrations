@@ -1,7 +1,4 @@
-﻿using System;
-using Newtonsoft.Json.Linq;
-
-namespace ApiVersion.Sample.Migrations
+﻿namespace CleanBreak.Common.MigrationModule
 {
     public abstract class JsonMigration : Migration
     {

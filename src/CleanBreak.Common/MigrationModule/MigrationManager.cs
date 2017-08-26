@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ApiVersion.Sample.Migrations;
 
-namespace ApiVersion.Sample.MigrationModule
+namespace CleanBreak.Common.MigrationModule
 {
     public class MigrationManager
     {

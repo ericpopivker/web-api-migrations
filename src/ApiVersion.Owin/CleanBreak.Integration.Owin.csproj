@@ -7,10 +7,11 @@
     <ProjectGuid>{A1E078C4-D87B-4E96-A7D5-9304398484D1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ApiVersion.Owin</RootNamespace>
-    <AssemblyName>ApiVersion.Owin</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>CleanBreak.Integration.Owin</RootNamespace>
+    <AssemblyName>CleanBreak.Integration.Owin</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

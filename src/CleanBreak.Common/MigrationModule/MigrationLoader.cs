@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using ApiVersion.Sample.Migrations;
 
-namespace ApiVersion.Sample.MigrationModule
+namespace CleanBreak.Common.MigrationModule
 {
     public class MigrationLoader : IMigrationLoader
     {

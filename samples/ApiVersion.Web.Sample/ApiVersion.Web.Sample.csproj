@@ -324,9 +324,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ApiVersion.Owin\ApiVersion.Owin.csproj">
+    <ProjectReference Include="..\ApiVersion.Owin\CleanBreak.Integration.Owin.csproj">
       <Project>{A1E078C4-D87B-4E96-A7D5-9304398484D1}</Project>
-      <Name>ApiVersion.Owin</Name>
+      <Name>CleanBreak.Integration.Owin</Name>
     </ProjectReference>
     <ProjectReference Include="..\ApiVersion.Sample\ApiVersion.Sample.csproj">
       <Project>{4F010FC5-04EA-4445-ABF9-1F0B408BB2AC}</Project>

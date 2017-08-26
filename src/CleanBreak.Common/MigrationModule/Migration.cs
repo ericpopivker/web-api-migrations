@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ApiVersion.Sample.Migrations
+﻿namespace CleanBreak.Common.MigrationModule
 {
     public abstract class Migration
     {

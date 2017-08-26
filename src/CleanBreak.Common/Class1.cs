@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApiVersion.Sample.MigrationModule
+namespace CleanBreak.Common
 {
-    public enum MigrationDirection
+    public class Class1
     {
-        Forward,
-        Backward
     }
 }
