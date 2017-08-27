@@ -14,10 +14,11 @@ namespace WebApiSample
     {
         public void Configuration(IAppBuilder app)
         {            
-            HttpConfiguration configuration = new HttpConfiguration();
-            WebApiConfig.Register(configuration);
+            //HttpConfiguration configuration = new HttpConfiguration();
+
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
             app.Use<CleanBreakOwinMiddleware>(new DefaultMigrationLoader(typeof(v20170817_Migration).Namespace), new DefaultVersionProvider());
-            app.UseWebApi(configuration);
+            app.UseWebApi(GlobalConfiguration.Configuration);
         }
     }
 }

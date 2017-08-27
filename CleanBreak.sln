@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanBreak.Integration.Owin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleSample", "samples\ConsoleSample\ConsoleSample.csproj", "{D066044A-5745-4A85-B56D-11E9B2F72DF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanBreak.Helpers.WebApi", "src\CleanBreak.Helpers.WebApi\CleanBreak.Helpers.WebApi.csproj", "{EC50B840-A8B9-4CC5-8DF2-A0E46C7B50E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D066044A-5745-4A85-B56D-11E9B2F72DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D066044A-5745-4A85-B56D-11E9B2F72DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D066044A-5745-4A85-B56D-11E9B2F72DF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC50B840-A8B9-4CC5-8DF2-A0E46C7B50E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC50B840-A8B9-4CC5-8DF2-A0E46C7B50E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC50B840-A8B9-4CC5-8DF2-A0E46C7B50E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC50B840-A8B9-4CC5-8DF2-A0E46C7B50E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,5 +54,6 @@ Global
 		{70187215-A0DB-4EFB-A5AF-D56C75F00E4C} = {8C558DB6-87D3-4F35-9B71-0B7DEFA3F3AD}
 		{A1E078C4-D87B-4E96-A7D5-9304398484D1} = {AD6BD564-A555-4E03-866D-AD9FC005C0FE}
 		{D066044A-5745-4A85-B56D-11E9B2F72DF8} = {8C558DB6-87D3-4F35-9B71-0B7DEFA3F3AD}
+		{EC50B840-A8B9-4CC5-8DF2-A0E46C7B50E8} = {AD6BD564-A555-4E03-866D-AD9FC005C0FE}
 	EndGlobalSection
 EndGlobal

@@ -136,6 +136,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MyFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -163,6 +164,10 @@
     <ProjectReference Include="..\..\src\CleanBreak.Common\CleanBreak.Common.csproj">
       <Project>{C9B22F27-83EE-418F-A611-00AE2349A8E2}</Project>
       <Name>CleanBreak.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\CleanBreak.Helpers.WebApi\CleanBreak.Helpers.WebApi.csproj">
+      <Project>{EC50B840-A8B9-4CC5-8DF2-A0E46C7B50E8}</Project>
+      <Name>CleanBreak.Helpers.WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\CleanBreak.Integration.Owin\CleanBreak.Integration.Owin.csproj">
       <Project>{A1E078C4-D87B-4E96-A7D5-9304398484D1}</Project>
