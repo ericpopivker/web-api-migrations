@@ -16,7 +16,7 @@ namespace ApiVersion.Web.Sample.ApiMigrations
                 return false;
             }
 
-            if (key.Direction == DataDirection.Incoming)
+            if (key.Direction == DataDirection.Request)
             {
                 body.Body = $"\"{JObject.Parse(body.Body)["value"]}\"";
                 return true;

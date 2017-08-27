@@ -2,7 +2,7 @@
 {
     public enum DataDirection
     {
-        Incoming,
-        Outgoing
+        Request,
+        Response
     }
 }

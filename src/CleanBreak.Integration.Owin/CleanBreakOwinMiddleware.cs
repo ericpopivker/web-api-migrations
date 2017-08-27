@@ -32,7 +32,7 @@ namespace CleanBreak.Integration.Owin
         {
             OwinMigrationKey migrationKey = new OwinMigrationKey()
             {
-                Direction = DataDirection.Outgoing,
+                Direction = DataDirection.Response,
                 Method = context.Request.Method,
                 Uri = context.Request.Uri
             };
@@ -73,7 +73,7 @@ namespace CleanBreak.Integration.Owin
         {
             var migrationKey = new OwinMigrationKey()
             {
-                Direction = DataDirection.Incoming,
+                Direction = DataDirection.Request,
                 Method = context.Request.Method,
                 Uri = context.Request.Uri
             };
