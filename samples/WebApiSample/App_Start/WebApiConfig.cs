@@ -17,7 +17,6 @@ namespace WebApiSample
             // Web API configuration and services
 
             // Web API routes
-			config.Filters.Add(new MyFilter());
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

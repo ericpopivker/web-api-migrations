@@ -14,12 +14,13 @@ namespace WebApiSample
     public partial class Startup
     {
         public void Configuration(IAppBuilder app)
-        {            
-            //HttpConfiguration configuration = new HttpConfiguration();
+        {
+			HttpConfiguration configuration = new HttpConfiguration();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            app.Use<CleanBreakOwinMiddleware>(new DefaultMigrationLoader(typeof(v20170817_Migration).Namespace), new DefaultVersionProvider(), new WebApiMigrationFilter());
-            app.UseWebApi(GlobalConfiguration.Configuration);
+			WebApiConfig.Register(configuration);
+            app.Use<CleanBreakOwinMiddleware>(new DefaultMigrationLoader(typeof(v20170817_Migration).Namespace), new DefaultVersionProvider(), new WebApiMigrationFilter(configuration));
+            app.UseWebApi(configuration);
+
         }
     }
 }

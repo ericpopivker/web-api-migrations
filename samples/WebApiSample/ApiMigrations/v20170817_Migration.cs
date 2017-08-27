@@ -11,7 +11,7 @@ using WebApiSample.Controllers;
 
 namespace ApiVersion.Web.Sample.ApiMigrations
 {
-	[WebApiMigrationMap(ControllerType = typeof(OrderController), HttpMethod = "Post")]
+	[WebApiMigrationMap(Controller = typeof(OrderController), HttpMethod = "Post")]
     public class v20170817_Migration : OwinMigration
     {
         public override bool Migrate(OwinMigrationKey key, OwinMigrationData body)
