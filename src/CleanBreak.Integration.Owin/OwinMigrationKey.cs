@@ -28,5 +28,10 @@ namespace CleanBreak.Integration.Owin
         {
             return Equals(Uri, other.Uri) && Direction == other.Direction && string.Equals(Method, other.Method);
         }
+
+	    public virtual string GetStringKey()
+	    {
+		    return $"{Direction}_{Method}_{Uri}";
+	    }
     }
 }

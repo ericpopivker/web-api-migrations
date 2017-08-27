@@ -13,8 +13,7 @@ namespace CleanBreak.Integration.Owin
     {
         private readonly IVersionProvider _versionProvider;
         private readonly MigrationManager _migrationManager;
-        private readonly Dictionary<OwinMigrationKey, bool> _cache = new Dictionary<OwinMigrationKey, bool>();
-
+        private readonly ICache _cache = new DefaultInMemoryCache();
 
         public CleanBreakOwinMiddleware(OwinMiddleware next, IMigrationLoader migrationLoader, IVersionProvider versionProvider) : base(next)
         {
@@ -39,9 +38,9 @@ namespace CleanBreak.Integration.Owin
             };
 
             bool applied;
-            if (_cache.TryGetValue(migrationKey, out applied))
+            if (_cache.TryGet(migrationKey.GetStringKey(), out applied))
             {
-                if (applied)
+                if (!applied)
                 {
                     return;
                 }
@@ -61,7 +60,7 @@ namespace CleanBreak.Integration.Owin
             }
 
             var migrationData = new OwinMigrationData() {Body = responseJsonBody};
-            _cache[migrationKey] = _migrationManager.Migrate(migrationKey, migrationData, version, MigrationDirection.Backward);
+            _cache[migrationKey.GetStringKey()] = _migrationManager.Migrate(migrationKey, migrationData, version, MigrationDirection.Backward);
             var newResultContent = new StringContent(migrationData.Body, Encoding.UTF8, "application/json");
             var customResponseStream = await newResultContent.ReadAsStreamAsync();
             await customResponseStream.CopyToAsync(owinResponseStream);
@@ -81,9 +80,9 @@ namespace CleanBreak.Integration.Owin
 
 
             bool applied;
-            if (_cache.TryGetValue(migrationKey, out applied))
+            if (_cache.TryGet(migrationKey.GetStringKey(), out applied))
             {
-                if (applied)
+                if (!applied)
                 {
                     return;
                 }
@@ -97,7 +96,7 @@ namespace CleanBreak.Integration.Owin
             }
 
             var migrationData = new OwinMigrationData() {Body = jsonBody};
-            _cache[migrationKey] = _migrationManager.Migrate(migrationKey, migrationData, version, MigrationDirection.Forward);
+            _cache[migrationKey.GetStringKey()] = _migrationManager.Migrate(migrationKey, migrationData, version, MigrationDirection.Forward);
             var content = new StringContent(migrationData.Body, Encoding.UTF8, "application/json");
             request.Body = await content.ReadAsStreamAsync();
         }

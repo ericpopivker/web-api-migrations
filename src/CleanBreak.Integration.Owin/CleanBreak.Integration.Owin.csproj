@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,7 +59,9 @@
   <ItemGroup>
     <Compile Include="CleanBreakOwinMiddleware.cs" />
     <Compile Include="DataDirection.cs" />
+    <Compile Include="DefaultInMemoryCache.cs" />
     <Compile Include="DefaultVersionProvider.cs" />
+    <Compile Include="ICache.cs" />
     <Compile Include="IVersionProvider.cs" />
     <Compile Include="OwinMigration.cs" />
     <Compile Include="OwinMigrationData.cs" />

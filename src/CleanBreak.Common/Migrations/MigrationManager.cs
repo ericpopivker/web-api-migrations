@@ -29,6 +29,7 @@ namespace CleanBreak.Common.Migrations
             bool migrated = false;
             foreach (var migration in migrationPipeline)
             {
+	            migration.Migration.Direction = direction;
                 migrated |= migration.Migration.Migrate(key, data);
             }
             return migrated;
