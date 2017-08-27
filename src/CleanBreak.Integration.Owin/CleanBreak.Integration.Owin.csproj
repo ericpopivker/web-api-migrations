@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C9B22F27-83EE-418F-A611-00AE2349A8E2}</ProjectGuid>
+    <ProjectGuid>{A1E078C4-D87B-4E96-A7D5-9304398484D1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CleanBreak.Common</RootNamespace>
-    <AssemblyName>CleanBreak.Common</AssemblyName>
+    <RootNamespace>CleanBreak.Integration.Owin</RootNamespace>
+    <AssemblyName>CleanBreak.Integration.Owin</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,10 +30,21 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ApiVersion.Owin\bin\Debug\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,14 +56,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\IMigrationLoader.cs" />
-    <Compile Include="Migrations\DefaultMigration.cs" />
-    <Compile Include="Migrations\MigrationBase.cs" />
-    <Compile Include="Migrations\MigrationDirection.cs" />
-    <Compile Include="Migrations\DefaultMigrationLoader.cs" />
-    <Compile Include="Migrations\MigrationManager.cs" />
-    <Compile Include="Migrations\MigrationWrapper.cs" />
+    <Compile Include="CleanBreakOwinMiddleware.cs" />
+    <Compile Include="DataDirection.cs" />
+    <Compile Include="DefaultVersionProvider.cs" />
+    <Compile Include="IVersionProvider.cs" />
+    <Compile Include="OwinMigration.cs" />
+    <Compile Include="OwinMigrationData.cs" />
+    <Compile Include="OwinMigrationKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CleanBreak.Common\CleanBreak.Common.csproj">
+      <Project>{c9b22f27-83ee-418f-a611-00ae2349a8e2}</Project>
+      <Name>CleanBreak.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
