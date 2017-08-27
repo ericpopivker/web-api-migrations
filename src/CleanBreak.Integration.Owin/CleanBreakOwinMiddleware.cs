@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using CleanBreak.Common.Caches;
 using CleanBreak.Common.Migrations;
 using Microsoft.Owin;
 
@@ -15,10 +16,10 @@ namespace CleanBreak.Integration.Owin
         private readonly MigrationManager _migrationManager;
         private readonly ICache _cache = new DefaultInMemoryCache();
 
-        public CleanBreakOwinMiddleware(OwinMiddleware next, IMigrationLoader migrationLoader, IVersionProvider versionProvider) : base(next)
+        public CleanBreakOwinMiddleware(OwinMiddleware next, IMigrationLoader migrationLoader, IVersionProvider versionProvider, IMigrationFilter migrationFilter = null) : base(next)
         {
             _versionProvider = versionProvider;
-            _migrationManager = new MigrationManager(migrationLoader);
+            _migrationManager = new MigrationManager(migrationLoader, migrationFilter ?? new NullMigrationFilter());
         }
 
         public override async Task Invoke(IOwinContext context)

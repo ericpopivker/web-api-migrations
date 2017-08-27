@@ -6,5 +6,6 @@ namespace CleanBreak.Helpers.WebApi
 	{
 		public Type ControllerType { get; set; }
 		public string ActionName { get; set; }
+		public string Method { get; set; }
 	}
 }

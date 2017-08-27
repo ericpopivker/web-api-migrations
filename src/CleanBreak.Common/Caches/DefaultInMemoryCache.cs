@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Runtime.Caching;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CleanBreak.Integration.Owin
+namespace CleanBreak.Common.Caches
 {
-	class DefaultInMemoryCache : ICache, IDisposable
+	public class DefaultInMemoryCache : ICache, IDisposable
 	{
 		private readonly TimeSpan EXPIRATION_VALUE = TimeSpan.FromSeconds(60);
-		private MemoryCache _cache = new MemoryCache("CleanBreak.Integration.Owin.Cache");
+		private MemoryCache _cache = new MemoryCache("CleanBreak.Caches");
 
 		public object this[string key]
 		{

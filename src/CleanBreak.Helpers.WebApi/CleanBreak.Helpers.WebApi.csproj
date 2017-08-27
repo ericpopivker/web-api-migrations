@@ -57,9 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WebApiMigrationMapAttribute.cs" />
     <Compile Include="RouteHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiExtenstions.cs" />
+    <Compile Include="WebApiMigrationFilter.cs" />
     <Compile Include="WebApiRequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>

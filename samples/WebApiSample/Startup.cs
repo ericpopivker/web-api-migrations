@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using ApiVersion.Web.Sample.ApiMigrations;
 using CleanBreak.Common.Migrations;
+using CleanBreak.Helpers.WebApi;
 using CleanBreak.Integration.Owin;
 using Microsoft.Owin;
 using Owin;
@@ -17,7 +18,7 @@ namespace WebApiSample
             //HttpConfiguration configuration = new HttpConfiguration();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
-            app.Use<CleanBreakOwinMiddleware>(new DefaultMigrationLoader(typeof(v20170817_Migration).Namespace), new DefaultVersionProvider());
+            app.Use<CleanBreakOwinMiddleware>(new DefaultMigrationLoader(typeof(v20170817_Migration).Namespace), new DefaultVersionProvider(), new WebApiMigrationFilter());
             app.UseWebApi(GlobalConfiguration.Configuration);
         }
     }

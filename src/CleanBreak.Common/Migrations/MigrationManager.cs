@@ -7,12 +7,14 @@ namespace CleanBreak.Common.Migrations
     public class MigrationManager
     {
         private readonly IMigrationLoader _migrationLoader;
-        private MigrationWrapper[] _migrations; 
+	    private readonly IMigrationFilter _migrationFilter;
+	    private MigrationWrapper[] _migrations; 
 
-        public MigrationManager(IMigrationLoader migrationLoader)
+        public MigrationManager(IMigrationLoader migrationLoader, IMigrationFilter migrationFilter)
         {
             _migrationLoader = migrationLoader;
-            _migrations = _migrationLoader.Load().OrderBy(s => s.Version).ToArray();
+	        _migrationFilter = migrationFilter;
+	        _migrations = _migrationLoader.Load().OrderBy(s => s.Version).ToArray();
         }
 
         public bool Migrate(object key, object data, IComparable currentVersion, MigrationDirection direction)
@@ -29,6 +31,10 @@ namespace CleanBreak.Common.Migrations
             bool migrated = false;
             foreach (var migration in migrationPipeline)
             {
+	            if (!_migrationFilter.Filter(key, migration))
+	            {
+		            continue;
+	            }
 	            migration.Migration.Direction = direction;
                 migrated |= migration.Migration.Migrate(key, data);
             }

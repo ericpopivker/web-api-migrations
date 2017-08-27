@@ -43,7 +43,8 @@ namespace CleanBreak.Helpers.WebApi
 			return new WebApiRequestHandler()
 			{
 				ControllerType = descriptor.ControllerType,
-				ActionName = action.ActionName
+				ActionName = action.ActionName,
+				Method = request.HttpMethod
 			};
 		}
 

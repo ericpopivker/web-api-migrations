@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caches\DefaultInMemoryCache.cs" />
+    <Compile Include="Caches\ICache.cs" />
+    <Compile Include="Caches\StaticClassCache.cs" />
+    <Compile Include="Migrations\IMigrationFilter.cs" />
     <Compile Include="Migrations\IMigrationLoader.cs" />
     <Compile Include="Migrations\DefaultMigration.cs" />
     <Compile Include="Migrations\MigrationBase.cs" />
@@ -51,6 +56,7 @@
     <Compile Include="Migrations\DefaultMigrationLoader.cs" />
     <Compile Include="Migrations\MigrationManager.cs" />
     <Compile Include="Migrations\MigrationWrapper.cs" />
+    <Compile Include="Migrations\NullMigrationFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

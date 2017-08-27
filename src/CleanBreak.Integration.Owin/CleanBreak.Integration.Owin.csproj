@@ -72,9 +72,7 @@
   <ItemGroup>
     <Compile Include="CleanBreakOwinMiddleware.cs" />
     <Compile Include="DataDirection.cs" />
-    <Compile Include="DefaultInMemoryCache.cs" />
     <Compile Include="DefaultVersionProvider.cs" />
-    <Compile Include="ICache.cs" />
     <Compile Include="IVersionProvider.cs" />
     <Compile Include="OwinMigration.cs" />
     <Compile Include="OwinMigrationData.cs" />

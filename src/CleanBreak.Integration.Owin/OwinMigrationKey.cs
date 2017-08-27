@@ -31,7 +31,7 @@ namespace CleanBreak.Integration.Owin
 
 	    public virtual string GetStringKey()
 	    {
-		    return $"{Direction}_{Method}_{Uri}";
+		    return $"{GetType().Name}_{Direction}_{Method}_{Uri}";
 	    }
     }
 }
