@@ -27,9 +27,9 @@ https://stripe.com/docs/upgrades#what-changes-does-stripe-consider-to-be-backwar
 
 There are 3 types of changes that may break the RESP Api contract:
 
-* a change in a request/response property type (string to int)
-* a change in a request/response property size (string(500) to string(100))
-* rename request/property name
+* rename request/response field name
+* a change in a request/response field type (string to int)
+* a change in a request/response field size (string(500) to string(100))
 * remove resource
 * remove request/response property
 * add/remove/rename enums
