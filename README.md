@@ -10,6 +10,7 @@ https://stripe.com/blog/api-versioning
 ## Features
 
 * Core Functionality: Proper handling of breaking changes without affecting clients
+* Provide a set of common breaking changes class, but allow customers to easily write their own
 * Log of breaking changes for whole API, Resource, Action, Property
 * Versioning is standardized using date labels like Stripe API: https://stripe.com/docs/upgrades#api-changelog
 * Supports webhook changes
@@ -44,14 +45,9 @@ Stripe keeps Weebhooks and API documented in one place. Probably makes sense to 
 
 
 
+## TO DO
 
-## Names for this product
-
-CleanBreak
-
-BulletproofApi
-
-UnofficialStripeVersioning
+- Ask Stripe.NET guy to review this
 
 
 ## Interesting links
