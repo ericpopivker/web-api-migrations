@@ -9,7 +9,7 @@ https://stripe.com/blog/api-versioning
 
 ## Features
 
-* Proper handling of breaking changes without affecting clients
+* Core Functionality: Proper handling of breaking changes without affecting clients
 * Log of breaking changes for whole API, Resource, Action, Property
 * Versioning is standardized using date labels like Stripe API: https://stripe.com/docs/upgrades#api-changelog
 * Supports webhook changes
@@ -39,6 +39,10 @@ There are 3 types of changes that may break the RESP Api contract:
 Should we log all changes (breaking and not) to get a complete change log?
 
 Stripe keeps Weebhooks and API documented in one place. Probably makes sense to always have Webhooks as part of API.
+
+
+
+
 
 
 ## Names for this product
