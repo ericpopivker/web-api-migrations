@@ -43,11 +43,9 @@ Stripe keeps Weebhooks and API documented in one place. Probably makes sense to 
 
 
 
-
-
 ## TO DO
 
-- Ask Stripe.NET guy to review this
+- Ask Stripe.NET guy to review this when MVP is ready
 
 
 ## Interesting links
