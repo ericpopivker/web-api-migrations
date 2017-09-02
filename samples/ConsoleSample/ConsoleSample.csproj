@@ -44,9 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonMigrationBase.cs" />
-    <Compile Include="Migrations\v20170815_Migration.cs" />
-    <Compile Include="Migrations\v20170820_Migration.cs" />
+    <Compile Include="JsonVersionBase.cs" />
+    <Compile Include="Migrations\V20170815_Version.cs" />
+    <Compile Include="Migrations\V20170820_Version.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

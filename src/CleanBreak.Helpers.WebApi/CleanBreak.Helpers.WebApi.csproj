@@ -34,8 +34,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\samples\ApiVersion.Web.Sample\Bin\Microsoft.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -61,10 +61,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contract\ApiChangeBase.cs" />
+    <Compile Include="Contract\ApiChangeTarget.cs" />
+    <Compile Include="Contract\ApiRequest.cs" />
+    <Compile Include="Contract\ApiResponse.cs" />
+    <Compile Include="Contract\IApiVersion.cs" />
+    <Compile Include="Contract\IChange.cs" />
+    <Compile Include="Contract\IChangeTarget.cs" />
+    <Compile Include="Contract\ICleanBreakApiConfig.cs" />
+    <Compile Include="Contract\RenameFieldTypeApiChange.cs" />
+    <Compile Include="Impl\TargetContext.cs" />
+    <Compile Include="Impl\WebApiVersion.cs" />
+    <Compile Include="Impl\WebApiVersionLoader.cs" />
     <Compile Include="WebApiMigrationMapAttribute.cs" />
     <Compile Include="WebApiRequestHandlerFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebApiMigrationFilter.cs" />
+    <Compile Include="WebApiVersionFilter.cs" />
     <Compile Include="WebApiRequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,8 +90,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

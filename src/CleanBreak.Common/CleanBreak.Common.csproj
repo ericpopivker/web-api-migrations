@@ -48,15 +48,14 @@
     <Compile Include="Caches\DefaultInMemoryCache.cs" />
     <Compile Include="Caches\ICache.cs" />
     <Compile Include="Caches\StaticClassCache.cs" />
-    <Compile Include="Migrations\IMigrationFilter.cs" />
-    <Compile Include="Migrations\IMigrationLoader.cs" />
-    <Compile Include="Migrations\DefaultMigration.cs" />
-    <Compile Include="Migrations\MigrationBase.cs" />
-    <Compile Include="Migrations\MigrationDirection.cs" />
-    <Compile Include="Migrations\DefaultMigrationLoader.cs" />
-    <Compile Include="Migrations\MigrationManager.cs" />
-    <Compile Include="Migrations\MigrationWrapper.cs" />
-    <Compile Include="Migrations\NullMigrationFilter.cs" />
+    <Compile Include="Versions\IVersionFilter.cs" />
+    <Compile Include="Versions\IVersionLoader.cs" />
+    <Compile Include="Versions\DefaultVersion.cs" />
+    <Compile Include="Versions\VersionBase.cs" />
+    <Compile Include="Versions\DefaultVersionLoader.cs" />
+    <Compile Include="Versions\VersionManager.cs" />
+    <Compile Include="Versions\VersionWrapper.cs" />
+    <Compile Include="Versions\NullVersionFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

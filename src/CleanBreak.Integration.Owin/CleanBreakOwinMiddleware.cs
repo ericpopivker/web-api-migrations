@@ -5,101 +5,112 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CleanBreak.Common.Caches;
-using CleanBreak.Common.Migrations;
+using CleanBreak.Common.Versions;
 using Microsoft.Owin;
+using Newtonsoft.Json.Linq;
 
 namespace CleanBreak.Integration.Owin
 {
-    public class CleanBreakOwinMiddleware : OwinMiddleware
-    {
-        private readonly IVersionProvider _versionProvider;
-        private readonly MigrationManager _migrationManager;
-        private readonly ICache _cache = new DefaultInMemoryCache();
+	public class CleanBreakOwinMiddleware : OwinMiddleware
+	{
+		private readonly IVersionProvider _versionProvider;
+		private readonly VersionManager _versionManager;
+		private readonly ICache _cache = new DefaultInMemoryCache();
 
-        public CleanBreakOwinMiddleware(OwinMiddleware next, IMigrationLoader migrationLoader, IVersionProvider versionProvider, IMigrationFilter migrationFilter = null) : base(next)
-        {
-            _versionProvider = versionProvider;
-            _migrationManager = new MigrationManager(migrationLoader, migrationFilter ?? new NullMigrationFilter());
-        }
+		public CleanBreakOwinMiddleware(OwinMiddleware next, IVersionLoader versionLoader, IVersionProvider versionProvider, IVersionFilter versionFilter = null) : base(next)
+		{
+			_versionProvider = versionProvider;
+			_versionManager = new VersionManager(versionLoader, versionFilter ?? new NullVersionFilter());
+		}
 
-        public override async Task Invoke(IOwinContext context)
-        {
-            IComparable version = _versionProvider.GetVersion(context);
-            await migrateRequest(context, version);
-            await migrateResponse(context, version);
-        }
+		public override async Task Invoke(IOwinContext context)
+		{
+			IComparable version = _versionProvider.GetVersion(context);
+			await migrateRequest(context, version);
+			await migrateResponse(context, version);
+		}
 
-        private async Task migrateResponse(IOwinContext context, IComparable version)
-        {
-            OwinMigrationKey migrationKey = new OwinMigrationKey()
-            {
-                Direction = DataDirection.Response,
-                Method = context.Request.Method,
-                Uri = context.Request.Uri
-            };
+		private string GetCachekey(Request request, IComparable version)
+		{
+			return $"{request.GetType().Name}_{version}_{request.Method}_{request.Uri}";
+		}
 
-            bool applied;
-            if (_cache.TryGet(migrationKey.GetStringKey(), out applied))
-            {
-                if (!applied)
-                {
-                    return;
-                }
-            }
+		private string GetCachekey(Response response, IComparable version)
+		{
+			return $"{response.GetType().Name}_{version}_{response.RequestMethod}_{response.RequestUri}";
+		}
 
-            var owinResponse = context.Response;
-            var owinResponseStream = owinResponse.Body;
-            var responseBuffer = new MemoryStream();
-            context.Response.Body = responseBuffer;
-            await Next.Invoke(context);
+		private async Task migrateResponse(IOwinContext context, IComparable version)
+		{
+			Response response = new Response()
+			{
+				RequestMethod = context.Request.Method,
+				RequestUri = context.Request.Uri,
+			};
 
-            string responseJsonBody = "";
-            responseBuffer.Seek(0, SeekOrigin.Begin);
-            using (StreamReader reader = new StreamReader(responseBuffer))
-            {
-                responseJsonBody = await reader.ReadToEndAsync();
-            }
+			bool applied;
+			string cacheKey = GetCachekey(response, version);
+			if (_cache.TryGet(cacheKey, out applied))
+			{
+				if (!applied)
+				{
+					await Next.Invoke(context);
+					return;
+				}
+			}
 
-            var migrationData = new OwinMigrationData() {Body = responseJsonBody};
-            _cache[migrationKey.GetStringKey()] = _migrationManager.Migrate(migrationKey, migrationData, version, MigrationDirection.Backward);
-            var newResultContent = new StringContent(migrationData.Body, Encoding.UTF8, "application/json");
-            var customResponseStream = await newResultContent.ReadAsStreamAsync();
-            await customResponseStream.CopyToAsync(owinResponseStream);
+			var owinResponse = context.Response;
+			var owinResponseStream = owinResponse.Body;
+			var responseBuffer = new MemoryStream();
+			context.Response.Body = responseBuffer;
+			await Next.Invoke(context);
 
-            owinResponse.ContentLength = customResponseStream.Length;
-            owinResponse.Body = owinResponseStream;
-        }
+			string responseJsonBody = "";
+			responseBuffer.Seek(0, SeekOrigin.Begin);
+			using (StreamReader reader = new StreamReader(responseBuffer))
+			{
+				responseJsonBody = await reader.ReadToEndAsync();
+			}
 
-        private async Task migrateRequest(IOwinContext context, IComparable version)
-        {
-            var migrationKey = new OwinMigrationKey()
-            {
-                Direction = DataDirection.Request,
-                Method = context.Request.Method,
-                Uri = context.Request.Uri
-            };
+			response.Body = new BodyContent(string.IsNullOrWhiteSpace(responseJsonBody) ? null : JToken.Parse(responseJsonBody));
 
+			_cache[cacheKey] = _versionManager.DowngradeData(response, version);
+			var newResultContent = new StringContent(response.Body.ToString(), Encoding.UTF8, "application/json");
+			var customResponseStream = await newResultContent.ReadAsStreamAsync();
+			await customResponseStream.CopyToAsync(owinResponseStream);
 
-            bool applied;
-            if (_cache.TryGet(migrationKey.GetStringKey(), out applied))
-            {
-                if (!applied)
-                {
-                    return;
-                }
-            }
+			owinResponse.ContentLength = customResponseStream.Length;
+			owinResponse.Body = owinResponseStream;
+		}
 
-            var request = context.Request;
-            string jsonBody = "";
-            using (StreamReader reader = new StreamReader(context.Request.Body))
-            {
-                jsonBody = await reader.ReadToEndAsync();
-            }
+		private async Task migrateRequest(IOwinContext context, IComparable version)
+		{
+			Request request = new Request()
+			{
+				Method = context.Request.Method,
+				Uri = context.Request.Uri,
+			};
 
-            var migrationData = new OwinMigrationData() {Body = jsonBody};
-            _cache[migrationKey.GetStringKey()] = _migrationManager.Migrate(migrationKey, migrationData, version, MigrationDirection.Forward);
-            var content = new StringContent(migrationData.Body, Encoding.UTF8, "application/json");
-            request.Body = await content.ReadAsStreamAsync();
-        }
-    }
+			string cacheKey = GetCachekey(request, version);
+			bool applied;
+			if (_cache.TryGet(cacheKey, out applied))
+			{
+				if (!applied)
+				{
+					return;
+				}
+			}
+
+			string jsonBody = "";
+			using (StreamReader reader = new StreamReader(context.Request.Body))
+			{
+				jsonBody = await reader.ReadToEndAsync();
+			}
+			request.Body = new BodyContent(string.IsNullOrWhiteSpace(jsonBody) ? null : JToken.Parse(jsonBody));
+
+			_cache[cacheKey] = _versionManager.UpgradeData(request, version);
+			var content = new StringContent(request.Body.ToString(), Encoding.UTF8, "application/json");
+			context.Request.Body = await content.ReadAsStreamAsync();
+		}
+	}
 }

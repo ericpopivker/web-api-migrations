@@ -4,37 +4,46 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApiSample.Dtos;
 
 namespace WebApiSample.Controllers
 {
-    public class OrderController : ApiController
-    {
-        // GET: api/Order
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+	public class OrderController : ApiController
+	{
+		private List<OrderDto> _orders = new List<OrderDto>()
+		{
+			new OrderDto()
+			{
+				Id = 2
+			}
+		};
 
-        // GET: api/Order/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+		// GET: api/Order
+		public IEnumerable<OrderDto> Get()
+		{
+			return _orders;
+		}
 
-        // POST: api/Order
-        public string Post([FromBody]string value)
-        {
-	        return $"Result: {value}";
-        }
+		// GET: api/Order/5
+		public OrderDto Get(int id)
+		{
+			return _orders.FirstOrDefault();
+		}
 
-        // PUT: api/Order/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+		// POST: api/Order
+		public void Post(OrderDto value)
+		{
 
-        // DELETE: api/Order/5
-        public void Delete(int id)
-        {
-        }
-    }
+		}
+
+		// PUT: api/Order/5
+		public void Put(int id, [FromBody]string value)
+		{
+		}
+
+		// DELETE: api/Order/5
+		public void Delete(int id)
+		{
+		}
+	}
 }

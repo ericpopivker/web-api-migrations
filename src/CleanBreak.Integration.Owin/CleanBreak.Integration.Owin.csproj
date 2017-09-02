@@ -70,13 +70,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BodyContent.cs" />
     <Compile Include="CleanBreakOwinMiddleware.cs" />
-    <Compile Include="DataDirection.cs" />
     <Compile Include="DefaultVersionProvider.cs" />
     <Compile Include="IVersionProvider.cs" />
-    <Compile Include="OwinMigration.cs" />
-    <Compile Include="OwinMigrationData.cs" />
-    <Compile Include="OwinMigrationKey.cs" />
+    <Compile Include="Response.cs" />
+    <Compile Include="OwinVersion.cs" />
+    <Compile Include="Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

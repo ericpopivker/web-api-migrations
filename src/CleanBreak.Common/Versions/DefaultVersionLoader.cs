@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace CleanBreak.Common.Migrations
+namespace CleanBreak.Common.Versions
 {
-    public class DefaultMigrationLoader : IMigrationLoader
+    public class DefaultVersionLoader : IVersionLoader
     {
         private readonly string _ns;
 
-        public DefaultMigrationLoader(string @namespace)
+        public DefaultVersionLoader(string @namespace)
         {
             _ns = @namespace;
         }
 
-        public IEnumerable<MigrationWrapper> Load()
+        public IEnumerable<VersionWrapper> Load()
         {
             return AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(a => a.GetTypes())
@@ -22,19 +22,19 @@ namespace CleanBreak.Common.Migrations
                 .Select(t => CreateMigrationWrapper(t));
         }
 
-        private MigrationWrapper CreateMigrationWrapper(Type migrationType)
+        private VersionWrapper CreateMigrationWrapper(Type versionType)
         {
-            string version = Regex.Match(migrationType.Name, @"v(.*)_").Groups[1].Value;            
-            return new MigrationWrapper()
+            string versionNumber = Regex.Match(versionType.Name, @"v(.*)", RegexOptions.IgnoreCase).Groups[1].Value;            
+            return new VersionWrapper()
             {
-                Version = version,
-                Migration = (MigrationBase) Activator.CreateInstance(migrationType)
+                Number = versionNumber,
+                Version = (VersionBase) Activator.CreateInstance(versionType)
             };
         }
 
         private bool IsMigration(Type type)
         {
-            if (type == typeof (MigrationBase))
+            if (type == typeof (VersionBase))
             {
                 return true;
             }
