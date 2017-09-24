@@ -6,12 +6,13 @@ namespace CleanBreak.Owin
 {
 	public static class AppBuilderExtensions
 	{
-		public static void UseCleanBreakForOwin(this IAppBuilder app, string versionsNamespace)
+		public static void UseCleanBreakForOwin(this IAppBuilder app, string versionsClassNamespace, string appliedUriPathRegexPattern = null)
 		{
 			app.Use<CleanBreakOwinMiddleware>(
-				new DefaultVersionLoader(versionsNamespace), 
+				new DefaultVersionLoader(versionsClassNamespace), 
 				new DefaultVersionProvider(),
-				new NullVersionFilter());
+				new NullVersionFilter(),
+				appliedUriPathRegexPattern == null ? null : new PathRequestFilter(appliedUriPathRegexPattern));
 		}
 	}
 }

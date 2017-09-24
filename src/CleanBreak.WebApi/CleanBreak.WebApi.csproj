@@ -70,6 +70,7 @@
     <Compile Include="ChangeTargets\ObjectChangeTarget.cs" />
     <Compile Include="Changes\ApiRequest.cs" />
     <Compile Include="Changes\ApiResponse.cs" />
+    <Compile Include="Core\WebApiRequestFilter.cs" />
     <Compile Include="IApiVersion.cs" />
     <Compile Include="Changes\IChange.cs" />
     <Compile Include="ChangeTargets\IChangeTarget.cs" />

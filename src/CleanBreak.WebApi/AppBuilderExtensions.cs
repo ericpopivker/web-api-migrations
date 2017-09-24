@@ -13,7 +13,8 @@ namespace CleanBreak.WebApi
 			app.Use<CleanBreakOwinMiddleware>(
 				new WebApiVersionLoader(cleanBreakApiConfig, httpConfiguration), 
 				new DefaultVersionProvider(), 
-				new WebApiVersionFilter(httpConfiguration));
+				new WebApiVersionFilter(httpConfiguration),
+				new WebApiRequestFilter(httpConfiguration));
 		}
 	}
 }

@@ -1,6 +1,9 @@
 ﻿using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Routing;
 using CleanBreak.WebApi;
 using Microsoft.Owin;
+using Microsoft.Owin.Extensions;
 using Owin;
 using WebApiSample;
 using WebApiSample.ApiVersions;
@@ -16,7 +19,7 @@ namespace WebApiSample
 			HttpConfiguration configuration = new HttpConfiguration();
 
 			WebApiConfig.Register(configuration);
-			
+
 			app.UseCleanBreakForWebApi(new CleanBreakApiConfig(), configuration);
 			app.UseWebApi(configuration);
 

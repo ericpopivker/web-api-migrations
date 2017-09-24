@@ -74,6 +74,9 @@
     <Compile Include="BodyContent.cs" />
     <Compile Include="Core\CleanBreakOwinMiddleware.cs" />
     <Compile Include="Core\DefaultVersionProvider.cs" />
+    <Compile Include="Core\IRequestFilter.cs" />
+    <Compile Include="Core\NullRequestFilter.cs" />
+    <Compile Include="Core\PathRequestFilter.cs" />
     <Compile Include="IVersionProvider.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="OwinVersion.cs" />

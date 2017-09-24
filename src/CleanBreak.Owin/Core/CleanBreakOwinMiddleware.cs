@@ -13,20 +13,32 @@ namespace CleanBreak.Owin.Core
 	public class CleanBreakOwinMiddleware : OwinMiddleware
 	{
 		private readonly IVersionProvider _versionProvider;
+		private readonly IRequestFilter _requestFilter;
 		private readonly VersionManager _versionManager;
 		private readonly ICache _cache = new DefaultInMemoryCache();
 
-		public CleanBreakOwinMiddleware(OwinMiddleware next, IVersionLoader versionLoader, IVersionProvider versionProvider, IVersionFilter versionFilter = null) : base(next)
+		public CleanBreakOwinMiddleware(
+			OwinMiddleware next, 
+			IVersionLoader versionLoader, 
+			IVersionProvider versionProvider, 
+			IVersionFilter versionFilter = null,
+			IRequestFilter requestFilter = null) : base(next)
 		{
 			_versionProvider = versionProvider;
+			_requestFilter = requestFilter ?? new NullRequestFilter();
 			_versionManager = new VersionManager(versionLoader, versionFilter ?? new NullVersionFilter());
 		}
 
 		public override async Task Invoke(IOwinContext context)
 		{
-			IComparable version = _versionProvider.GetVersion(context);
-			await migrateRequest(context, version);
-			await migrateResponse(context, version);
+			if (_requestFilter.Filter(context.Request))
+			{
+				IComparable version = _versionProvider.GetVersion(context);
+				await migrateRequest(context, version);
+				await migrateResponse(context, version);
+				return;
+			}
+			await Next.Invoke(context);
 		}
 
 		private string GetCachekey(Request request, IComparable version)

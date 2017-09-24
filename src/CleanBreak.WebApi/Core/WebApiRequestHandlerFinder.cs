@@ -19,6 +19,10 @@ namespace CleanBreak.WebApi.Core
 
 			var requestMessage = new HttpRequestMessage(new HttpMethod(httpMethod), uri);
 			IHttpRouteData routeData = httpConfiguration.Routes.GetRouteData(requestMessage);
+			if (routeData == null)
+			{
+				return null;
+			}
 			RemoveOptionalRoutingParameters(routeData.Values);
 
 			requestMessage.Properties.Add(HttpPropertyKeys.HttpRouteDataKey, routeData);

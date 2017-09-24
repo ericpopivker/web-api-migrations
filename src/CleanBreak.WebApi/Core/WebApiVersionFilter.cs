@@ -29,7 +29,11 @@ namespace CleanBreak.WebApi.Core
 		public bool FilterUpgrade(object data, VersionWrapper version)
 		{
 			Request request = (Request)data;
-			return Filter(request.Method, request.Uri, version);
+			if (request.Method == "GET")
+			{
+				return false;
+			}
+			return Filter(request.Method, request.Uri, version);		
 		}
 
 		private bool Filter(string method, Uri uri, VersionWrapper version)
