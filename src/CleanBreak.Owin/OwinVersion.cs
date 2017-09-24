@@ -1,6 +1,6 @@
 ﻿using CleanBreak.Common.Versions;
 
-namespace CleanBreak.Integration.Owin
+namespace CleanBreak.Owin
 {
 	public abstract class OwinVersion : VersionBase
 	{

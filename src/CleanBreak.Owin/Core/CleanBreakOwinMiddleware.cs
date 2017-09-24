@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -9,7 +8,7 @@ using CleanBreak.Common.Versions;
 using Microsoft.Owin;
 using Newtonsoft.Json.Linq;
 
-namespace CleanBreak.Integration.Owin
+namespace CleanBreak.Owin.Core
 {
 	public class CleanBreakOwinMiddleware : OwinMiddleware
 	{

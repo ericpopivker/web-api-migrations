@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-namespace CleanBreak.Helpers.WebApi.Contract
+namespace CleanBreak.WebApi.Changes
 {
 	public class RenameFieldTypeApiChange : ApiChangeBase
 	{

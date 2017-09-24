@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Web.Http;
-using System.Web.Http.Controllers;
-using CleanBreak.Helpers.WebApi.Impl;
+using CleanBreak.WebApi.Changes;
+using CleanBreak.WebApi.Core;
 
-namespace CleanBreak.Helpers.WebApi.Contract
+namespace CleanBreak.WebApi.ChangeTargets
 {
-	public class ApiChangeTarget : IChangeTarget
+	public class ObjectChangeTarget : IChangeTarget
 	{
 		public Type ClassType { get; set; }
 

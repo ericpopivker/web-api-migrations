@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Owin;
 
-namespace CleanBreak.Integration.Owin
+namespace CleanBreak.Owin
 {
     public interface IVersionProvider
     {

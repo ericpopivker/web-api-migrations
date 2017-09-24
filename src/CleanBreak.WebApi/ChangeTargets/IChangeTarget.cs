@@ -1,6 +1,7 @@
-﻿using CleanBreak.Helpers.WebApi.Impl;
+﻿using CleanBreak.WebApi.Changes;
+using CleanBreak.WebApi.Core;
 
-namespace CleanBreak.Helpers.WebApi.Contract
+namespace CleanBreak.WebApi.ChangeTargets
 {
 	public interface IChangeTarget
 	{

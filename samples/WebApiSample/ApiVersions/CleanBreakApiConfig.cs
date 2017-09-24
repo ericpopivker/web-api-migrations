@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using CleanBreak.Helpers.WebApi.Contract;
+using CleanBreak.WebApi;
 
 namespace WebApiSample.ApiVersions
 {

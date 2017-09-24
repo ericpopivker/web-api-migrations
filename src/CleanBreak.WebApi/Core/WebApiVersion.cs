@@ -1,11 +1,9 @@
-﻿using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using CleanBreak.Common.Caches;
-using CleanBreak.Helpers.WebApi.Contract;
-using CleanBreak.Integration.Owin;
-using Newtonsoft.Json.Linq;
+using CleanBreak.Owin;
+using CleanBreak.WebApi.Changes;
 
-namespace CleanBreak.Helpers.WebApi.Impl
+namespace CleanBreak.WebApi.Core
 {
 	public class WebApiVersion : OwinVersion
 	{

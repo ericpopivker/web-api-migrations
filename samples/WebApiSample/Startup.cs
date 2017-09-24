@@ -1,7 +1,5 @@
 ﻿using System.Web.Http;
-using CleanBreak.Helpers.WebApi;
-using CleanBreak.Helpers.WebApi.Impl;
-using CleanBreak.Integration.Owin;
+using CleanBreak.WebApi;
 using Microsoft.Owin;
 using Owin;
 using WebApiSample;
@@ -18,9 +16,8 @@ namespace WebApiSample
 			HttpConfiguration configuration = new HttpConfiguration();
 
 			WebApiConfig.Register(configuration);
-			//         app.Use<CleanBreakOwinMiddleware>(new DefaultVersionLoader(typeof(V20170817_Version).Namespace), new DefaultVersionProvider(), new WebApiVersionFilter(configuration));
-
-			app.Use<CleanBreakOwinMiddleware>(new WebApiVersionLoader(new CleanBreakApiConfig(), configuration), new DefaultVersionProvider(), new WebApiVersionFilter(configuration));
+			
+			app.UseCleanBreakForWebApi(new CleanBreakApiConfig(), configuration);
 			app.UseWebApi(configuration);
 
 		}

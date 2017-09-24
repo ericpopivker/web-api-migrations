@@ -13,11 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanBreak.Common", "src\Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiSample", "samples\WebApiSample\WebApiSample.csproj", "{70187215-A0DB-4EFB-A5AF-D56C75F00E4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanBreak.Integration.Owin", "src\CleanBreak.Integration.Owin\CleanBreak.Integration.Owin.csproj", "{A1E078C4-D87B-4E96-A7D5-9304398484D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanBreak.Owin", "src\CleanBreak.Owin\CleanBreak.Owin.csproj", "{A1E078C4-D87B-4E96-A7D5-9304398484D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleSample", "samples\ConsoleSample\ConsoleSample.csproj", "{D066044A-5745-4A85-B56D-11E9B2F72DF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanBreak.Helpers.WebApi", "src\CleanBreak.Helpers.WebApi\CleanBreak.Helpers.WebApi.csproj", "{EC50B840-A8B9-4CC5-8DF2-A0E46C7B50E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanBreak.WebApi", "src\CleanBreak.WebApi\CleanBreak.WebApi.csproj", "{EC50B840-A8B9-4CC5-8DF2-A0E46C7B50E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

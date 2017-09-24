@@ -1,4 +1,6 @@
-namespace CleanBreak.Helpers.WebApi.Contract
+using CleanBreak.WebApi.Changes;
+
+namespace CleanBreak.WebApi
 {
 	public interface IApiVersion
 	{

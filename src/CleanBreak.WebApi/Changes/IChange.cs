@@ -1,4 +1,6 @@
-﻿namespace CleanBreak.Helpers.WebApi.Contract
+﻿using CleanBreak.WebApi.ChangeTargets;
+
+namespace CleanBreak.WebApi.Changes
 {
 	public interface IChange
 	{

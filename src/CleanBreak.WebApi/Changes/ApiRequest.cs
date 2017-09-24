@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net.Http;
-using CleanBreak.Integration.Owin;
-using Newtonsoft.Json.Linq;
+using CleanBreak.Owin;
 
-namespace CleanBreak.Helpers.WebApi.Contract
+namespace CleanBreak.WebApi.Changes
 {
 	public class ApiRequest
 	{

@@ -1,12 +1,6 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
-namespace CleanBreak.Integration.Owin
+namespace CleanBreak.Owin
 {
 	public class BodyContent
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CleanBreak.Helpers.WebApi
+namespace CleanBreak.WebApi.Core
 {
 	public class WebApiRequestHandler
 	{

@@ -1,7 +1,6 @@
 ﻿using System;
-using Newtonsoft.Json.Linq;
 
-namespace CleanBreak.Integration.Owin
+namespace CleanBreak.Owin
 {
 	public class Request
 	{

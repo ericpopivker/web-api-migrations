@@ -1,7 +1,7 @@
-﻿using System.Dynamic;
-using System.Web.Http;
+﻿using System.Web.Http;
+using CleanBreak.WebApi.ChangeTargets;
 
-namespace CleanBreak.Helpers.WebApi.Contract
+namespace CleanBreak.WebApi.Changes
 {
 	public class ApiChangeBase : IChange
 	{

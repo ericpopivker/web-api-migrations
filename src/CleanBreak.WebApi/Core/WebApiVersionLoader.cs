@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web.Http;
 using CleanBreak.Common.Caches;
 using CleanBreak.Common.Versions;
-using CleanBreak.Helpers.WebApi.Contract;
 
-namespace CleanBreak.Helpers.WebApi.Impl
+namespace CleanBreak.WebApi.Core
 {
 	public class WebApiVersionLoader : IVersionLoader
 	{
