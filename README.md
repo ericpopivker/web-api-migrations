@@ -25,7 +25,7 @@ https://stripe.com/blog/api-versioning
 This changes stripe considers backwards incompatible
 https://stripe.com/docs/upgrades#what-changes-does-stripe-consider-to-be-backwards-compatible
 
-There are 3 types of changes that may break the RESP Api contract:
+There are multiple of changes that may break the RESP Api contract:
 
 * rename request/response field name
 * a change in a request/response field type (string to int)
